@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             activityMainBinding.jogadaComputador2Iv.setImageResource(imagemJogadaComputador2);
         }
 
-                    StringBuilder resultadoSb = new StringBuilder();
+        StringBuilder resultadoSb = new StringBuilder();
 
         if (jogada == jogadaComputador1) {
             resultadoSb.append("EMPATE!");
