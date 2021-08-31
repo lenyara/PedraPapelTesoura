@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void jogarJoKenPo(int jogada) {
         Random random = new Random(System.currentTimeMillis());
-        Boolean continuaJogar = false;
-        Boolean perdeuJogo = false;
 
         int jogadaComputador1 = random.nextInt(3);
         int imagemJogadaComputador1 = -1;
@@ -130,20 +128,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (jogada == jogadaComputador1) {
             resultadoSb.append("EMPATE!");
-            continuaJogar = true;
-            //continuaJogar = false;
         } else if ((jogada - jogadaComputador1 == -2) || (jogada - jogadaComputador1 == 1)) {
             resultadoSb.append("Você GANHOU!");
-            continuaJogar = true;
         } else {
             resultadoSb.append("Você PERDEU!");
-            continuaJogar = false;
-            perdeuJogo = true;
         }
 
-        if ((activityMainBinding.jogador3Rb.isChecked()) && (continuaJogar)){
+        if (activityMainBinding.jogador3Rb.isChecked()) {
             resultadoSb.setLength(0);
-            if (jogada == jogadaComputador2) {
+            if (((jogada == jogadaComputador2) && (jogada == jogadaComputador1))||((jogada != jogadaComputador1) && (jogada != jogadaComputador2) && (jogadaComputador1 != jogadaComputador2)) ) {
                 resultadoSb.append("EMPATE!");
             } else if ((jogada - jogadaComputador2 == -2) || (jogada - jogadaComputador2 == 1)) {
                 resultadoSb.append("Você GANHOU!");
@@ -151,16 +144,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resultadoSb.append("Você PERDEU!");
             }
         }
-
-        if ((activityMainBinding.jogador3Rb.isChecked()) && (perdeuJogo)){
-            resultadoSb.setLength(0);
-            if (jogada == jogadaComputador2) {
-                resultadoSb.append("EMPATE!");
-            }else {
-                resultadoSb.append("Você PERDEU!");
-            }
-        }
-
         activityMainBinding.resultadoTv.setText(resultadoSb.toString());
     }
 }
